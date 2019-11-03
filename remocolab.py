@@ -102,12 +102,12 @@ def _setupSSHDImpl(ngrok_token, ngrok_region):
   print("---")
   print("Command to connect to the ssh server:")
   print("✂️"*24)
-  print(f"ssh {ssh_common_options} -p {port} {user_name}@{hostname}")
+  print(f"ssh {ssh_common_options} -p {port} root@{hostname}")
   print("✂️"*24)
   print("---")
   print("If you use VNC:")
   print("✂️"*24)
-  print(f"ssh {ssh_common_options} -L 5901:localhost:5901 -p {port} {user_name}@{hostname}")
+  print(f"ssh {ssh_common_options} -L 5901:localhost:5901 -p {port} root@{hostname}")
   print("✂️"*24)
 
 def setupSSHD(ngrok_region = "ap", check_gpu_available = False):
@@ -246,7 +246,7 @@ subprocess.run(
 (pathlib.Path.home() / ".xscreensaver").write_text("mode: off\\n")
 """)
   r = subprocess.run(
-                    ["su", "-c", "python3 vncrun.py", "root"],
+                    ["su", "-c", "python3 vncrun.py", "colab"],
                     check = True,
                     stdout = subprocess.PIPE,
                     universal_newlines = True)
